@@ -28,7 +28,6 @@ public class bookingTimeOffSteps{
     @When("the employee goes to the holiday request screen")
     public void the_employee_goes_to_the_holiday_request_screen() {
         homepage.ClickMyTimeOffBtn();
-//        myTimeOff.ClickTurnToNextMonth();
     }
 
     @When("the employee goes to the Lieu request screen")
@@ -84,5 +83,10 @@ public class bookingTimeOffSteps{
     @Then("cancels the booked Appointment")
     public void cancelsTheBookedAppointment() throws InterruptedException {
         myTimeOffPage.ClickCancelBtn();
+    }
+
+    @And("select an employee")
+    public void selectAnEmployee() throws InterruptedException {
+        myTimeOffPage.SelectEmployee();
     }
 }

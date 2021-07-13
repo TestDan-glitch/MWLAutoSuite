@@ -1,7 +1,8 @@
 Feature: Logging in and out
   I want to log into MWL
 
-  @Smoke @Screenshots(fullPage = true)
+  @firefox @driver:firefox
+  @Smoke
   Scenario: Log as an Admin User
     Given I navigate to MWL
     When I enter my Admin User credentials

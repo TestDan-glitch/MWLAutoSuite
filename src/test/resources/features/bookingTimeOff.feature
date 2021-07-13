@@ -20,8 +20,9 @@ Feature: Booking Time Off
 
   @TimeOff @Holiday @CancellingABookedHoliday
   Scenario: Cancelling a booked Holiday
-    Given an employee logs into My Working Life
+    Given an Admin logs into My Working Life
     When the employee goes to the holiday request screen
+    And select an employee
     Then cancels a booked holiday
     And log out of MWL
 

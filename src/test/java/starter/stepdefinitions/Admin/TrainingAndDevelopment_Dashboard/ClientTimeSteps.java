@@ -5,7 +5,12 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import navigation.MWLNavigateTo;
+import net.serenitybdd.core.annotations.findby.By;
 import net.thucydides.core.annotations.Steps;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.Admin.TrainingAndDevelopment_Dashboard.ClientTimePage;
 import pages.Admin.TrainingAndDevelopment_Dashboard.TrainingAndDevelopment_DashboardPage;
 import pages.Admin.TrainingAndDevelopment_Dashboard.WowChatPage;
@@ -14,6 +19,7 @@ import pages.LoginPage;
 import pages.MyTimeOffPage;
 
 import javax.swing.table.TableRowSorter;
+import java.time.Duration;
 
 public class ClientTimeSteps {
     @Steps
@@ -28,7 +34,6 @@ public class ClientTimeSteps {
     public void anAdminLogsIntoMyWorkingLife() throws InterruptedException {
         mwlNavigateTo.theMWLHomePage();
         loginpage.Login("Matthew Regis", "Myoldpass12!!");
-//        loginpage.Login("Matthew Regis", "Myoldpass12!!");
         loginpage.ClickLogin();
         homepage.CheckAdminPage();
     }
@@ -57,7 +62,6 @@ public class ClientTimeSteps {
 
     @Then("books the Slot")
     public void booksTheSlot() throws InterruptedException {
-//        wowChatPage.EditWowSlotSlot();
         clientTimePage.ClickSaveBtn();
     }
 }

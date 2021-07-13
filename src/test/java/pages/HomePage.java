@@ -20,6 +20,9 @@ public class HomePage extends UIInteractionSteps{
     @FindBy(how = How.XPATH, using = "//h2[text()[normalize-space()='Naomi Lloyd, welcome to My Working Life']]")
     public WebElement employeePageCheck;
 
+    @FindBy(how = How.XPATH, using = "//p[text()='This is where you can view your information.']")
+    public WebElement MyDetailsBtn;
+
     @FindBy(how = How.ID, using = "MyTimeOff")
     public WebElement MyTimeOffBtn;
 
@@ -44,6 +47,10 @@ public class HomePage extends UIInteractionSteps{
 
     public void CheckEmployeePage() {
         employeePageCheck.isDisplayed();
+    }
+
+    public void ClickMyDetailsBtn() {
+        MyDetailsBtn.click();
     }
 
     public void ClickMyTimeOffBtn() {

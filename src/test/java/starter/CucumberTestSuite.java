@@ -7,8 +7,7 @@ import org.junit.runner.RunWith;
 @RunWith(CucumberWithSerenity.class)
 @CucumberOptions(
         plugin = {"pretty"},
-//        features="src/test/resources/features/search/search_by_keyword.feature"
-        features="src/test/resources/features/search/bookingTimeOff.feature"
-//        features = "classpath:features"
+      //  tags = {"@safari"},
+        features = "classpath:features"
 )
 public class CucumberTestSuite extends BrowserStackSerenityTest {}

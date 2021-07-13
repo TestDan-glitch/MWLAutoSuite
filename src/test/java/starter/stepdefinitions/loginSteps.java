@@ -10,7 +10,6 @@ import pages.HomePage;
 import pages.LoginPage;
 
 public class loginSteps {
-
     @Steps
     MWLNavigateTo mwlNavigateTo;
 

@@ -7,7 +7,7 @@ import org.junit.runner.RunWith;
 @RunWith(CucumberWithSerenity.class)
 @CucumberOptions(
         plugin = {"pretty"},
-        features="src/test/resources/features/search/login.feature"
+        features="src/test/resources/features/login.feature"
 //        features = "classpath:features"
 )
 public class ParallelIETest extends BrowserStackSerenityTest {}

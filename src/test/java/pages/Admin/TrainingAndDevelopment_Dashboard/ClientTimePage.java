@@ -1,5 +1,6 @@
 package pages.Admin.TrainingAndDevelopment_Dashboard;
 
+import ch.qos.logback.core.spi.ComponentTracker;
 import net.serenitybdd.core.steps.UIInteractionSteps;
 import net.thucydides.core.annotations.Managed;
 import org.openqa.selenium.By;
@@ -108,8 +109,10 @@ public class ClientTimePage extends UIInteractionSteps {
         withTimeoutOf(Duration.ofSeconds(30)).find(By.xpath("//button[@type='button']")).click();
     }
 
-    public void ClickSaveBtn() {
-
+    public void ClickSaveBtn() throws InterruptedException {
         SaveBtn.click();
+        Thread.sleep(3000);
     }
+
+
 }

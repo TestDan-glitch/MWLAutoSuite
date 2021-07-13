@@ -1,34 +1,14 @@
 package pages;
 
-import io.cucumber.stepexpression.DataTableArgument;
+import assets.bookDate;
 import net.serenitybdd.core.steps.UIInteractionSteps;
 import net.thucydides.core.annotations.Managed;
-import net.thucydides.core.webdriver.WebDriverFacade;
-import org.eclipse.jetty.util.component.Container;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Instant;
-import java.util.concurrent.TimeUnit;
-
-import static org.junit.Assert.fail;
-
-import java.util.regex.Pattern;
-import java.util.concurrent.TimeUnit;
-import org.junit.*;
-import static org.junit.Assert.*;
-import static org.hamcrest.CoreMatchers.*;
-import org.openqa.selenium.*;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
-
 
 public class MyTimeOffPage extends UIInteractionSteps {
     @Managed
@@ -42,9 +22,6 @@ public class MyTimeOffPage extends UIInteractionSteps {
 
     @FindBy(how = How.ID, using = "RequestLieuDaysOff")
     public WebElement RequestLieuDaysOffBtn;
-
-    @FindBy(how = How.XPATH, using = "(xpath=//div[@data-date='3']")
-    public WebElement PickCalendarDay;
 
     @FindBy(how = How.CSS, using = ".datepicker--nav-action:nth-child(3) path")
     public WebElement TurnToNextMonth;
@@ -61,8 +38,9 @@ public class MyTimeOffPage extends UIInteractionSteps {
     @FindBy(how = How.ID, using = "Notes")
     public WebElement NotesField;
 
+    bookDate theDate = new bookDate();
+
     public void ClickRequestDaysOffBtn() throws InterruptedException {
-//        Thread.sleep(5000);
         RequestDaysOffBtn.click();
     }
 
@@ -94,23 +72,25 @@ public class MyTimeOffPage extends UIInteractionSteps {
     }
 
     public void ClickTurnToNextMonth() {
-//        webDriver.manage().timeouts().implicitlyWait(100, TimeUnit.SECONDS);
         TurnToNextMonth.click();
     }
 
     public void ClickPickCalendarDay() throws InterruptedException {
-//        WebDriverWait wait = new WebDriverWait(driver, 10);
-//        WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@data-date='20']")));
             try {
-                WebElement date = getDriver().findElement(By.xpath("//div[@data-date='20']"));
+                WebElement date = getDriver().findElement(By.xpath("//div[@data-date='"+theDate.getDate()+"']"));
                 date.click();
             }
             catch(org.openqa.selenium.StaleElementReferenceException ex)
             {
-                WebElement date = getDriver().findElement(By.xpath("//div[@data-date='20']"));
+                WebElement date = getDriver().findElement(By.xpath("//div[@data-date='"+theDate.getDate()+"']"));
                 date.click();
             }
         getDriver().findElement(By.xpath("//input[@value='Request']")).click();
+    }
+
+    public void SelectEmployee() throws InterruptedException {
+        getDriver().findElement(By.name("Id")).click();
+        new Select(getDriver().findElement(By.name("Id"))).selectByVisibleText("Naomi Lloyd (DO NOT USE)");
     }
 
     public void CheckForConflictWarning() throws InterruptedException {

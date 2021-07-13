@@ -1,5 +1,6 @@
 package pages.Admin.Absence_Dashboard;
 
+import assets.bookDate;
 import net.serenitybdd.core.annotations.findby.By;
 import net.serenitybdd.core.steps.UIInteractionSteps;
 import net.thucydides.core.annotations.Managed;
@@ -8,9 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
@@ -60,12 +59,13 @@ public class AbsencePage extends UIInteractionSteps{
     @FindBy(how = How.ID, using = "paidCheck")
     public WebElement paidCheckCheckBox;
 
+    bookDate bookingDate = new bookDate();
+
     public void ClickAddAbsenceBtn() {
         AddAbsenceBtn.click();
     }
 
     public void EnterAbsenceInformation() throws InterruptedException {
-//        EmployeeNameDropdownBox.click();
         EmployeeNameDropdownBox.sendKeys(Keys.ARROW_DOWN);
         new Select(getDriver().findElement(By.id("PersonId"))).selectByVisibleText("Naomi Lloyd (DO NOT USE)");
         EmployeeNameDropdownBox.click();
@@ -75,51 +75,21 @@ public class AbsencePage extends UIInteractionSteps{
         AbsenceReasonDropdownBox.click();
 
         AbsenceStartDateDropdownBox.click();
-        getDriver().findElement(By.id("StartDate")).sendKeys("17-05-2021");
+        String day = bookingDate.getDay();
+        String month = bookingDate.getMonth();
+
+        getDriver().findElement(By.id("StartDate")).sendKeys(""+day+"-"+month+"-2021");
 
         AbsenceEndDateDropdownBox.click();
-        getDriver().findElement(By.id("EndDate")).sendKeys("17-05-2021");
+        getDriver().findElement(By.id("EndDate")).sendKeys(""+day+"-"+month+"-2021");
 
         NotesField.click();
         getDriver().findElement(By.id("Notes")).sendKeys("Testing the booking of an Absence");
-//        Thread.sleep(5000);
     }
 
     public void SaveEnteredAbsenceInformation() throws InterruptedException {
-//        withTimeoutOf(Duration.ofSeconds(30)).find(By.id("submitButton"));
-//        Thread.sleep(3000);
         AddBtn.click();
-//        Thread.sleep(3000);
-//        new WebDriverWait(getDriver(), 30).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/button[@type='submit']")));
-
-//        try {
-//            WebElement date = getDriver().findElement(org.openqa.selenium.By.xpath("//button[@type='submit']"));
-////            WebElement date = getDriver().findElement(By.cssSelector("form#logoutForm>button"));
-//            date.click();
-//        }
-//        catch(org.openqa.selenium.StaleElementReferenceException ex)
-//        {
-//            WebElement date = getDriver().findElement(org.openqa.selenium.By.xpath("//button[@type='submit']"));
-////            WebElement date = getDriver().findElement(By.cssSelector("form#logoutForm>button"));
-//            date.click();
-//        }
-
-//        withTimeoutOf(Duration.ofSeconds(30)).find(By.cssSelector("form#logoutForm>button"));
-//        getDriver().findElement(org.openqa.selenium.By.cssSelector("form#logoutForm>button"));
-
-//        new WebDriverWait(getDriver(), 10).until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector("form#AddAbsenceForm>div:nth-of-type(4)")));
-//        withTimeoutOf(Duration.ofSeconds(30)).find(By.cssSelector("form#logoutForm>button"));
-//        try {
-//            WebElement date = getDriver().findElement(org.openqa.selenium.By.cssSelector("form#logoutForm>button"));
-//         //   date.click();
-//        }
-//        catch(org.openqa.selenium.StaleElementReferenceException ex)
-//        {
-//            WebElement date = getDriver().findElement(org.openqa.selenium.By.cssSelector("form#logoutForm>button"));
-//          //  date.click();
-//        }
 //        Thread.sleep(5000);
-
     }
 
     public void EditABookedAbsence() throws InterruptedException {
@@ -130,6 +100,7 @@ public class AbsencePage extends UIInteractionSteps{
         AbsenceReasonDropdownBox.click();
 
         NotesField.click();
+        getDriver().findElement(By.id("Notes")).clear();
         getDriver().findElement(By.id("Notes")).sendKeys("EDITED Testing the booking of an Absence");
 
         ReturnToWorkCheckBox.click();
@@ -138,36 +109,19 @@ public class AbsencePage extends UIInteractionSteps{
         trophyCheckCheckBox.click();
         paidCheckCheckBox.click();
 
-        AddBtn.click();
-
-//        try {
-//            WebElement date = getDriver().findElement(org.openqa.selenium.By.xpath("//button[@type='submit']"));
-////            WebElement date = getDriver().findElement(By.cssSelector("form#logoutForm>button"));
-//            date.click();
-//        }
-//        catch(org.openqa.selenium.StaleElementReferenceException ex)
-//        {
-//            WebElement date = getDriver().findElement(org.openqa.selenium.By.xpath("//button[@type='submit']"));
-////            WebElement date = getDriver().findElement(By.cssSelector("form#logoutForm>button"));
-//            date.click();
-//        }
+        AddBtn.submit();
     }
 
     public void DeleteBookedAbsence() throws InterruptedException {
-                try {
+    try {
             WebElement date = getDriver().findElement(org.openqa.selenium.By.linkText("Delete"));
-//            WebElement date = getDriver().findElement(By.cssSelector("form#logoutForm>button"));
             date.click();
         }
         catch(org.openqa.selenium.StaleElementReferenceException ex)
         {
             WebElement date = getDriver().findElement(org.openqa.selenium.By.linkText("Delete"));
-//            WebElement date = getDriver().findElement(By.cssSelector("form#logoutForm>button"));
             date.click();
         }
-//        DeleteBtn.click();
         withTimeoutOf(Duration.ofSeconds(30)).find(By.xpath("//button[@type='button']")).click();
     }
-
-
 }
