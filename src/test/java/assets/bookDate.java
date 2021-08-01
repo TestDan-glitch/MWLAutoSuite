@@ -1,5 +1,7 @@
 package assets;
 
+import com.ibm.icu.util.Calendar;
+
 import java.time.LocalDate;
 import java.time.Month;
 
@@ -25,7 +27,6 @@ public class bookDate {
 
         String monthString=Integer.toString(month);
 
-        //return today;
         return monthString;
     }
 
@@ -60,6 +61,13 @@ public class bookDate {
             return currentDay + 3;
         } // Mon, Tue & Wed
             return currentDay;
+    }
+
+    public int intDay(){
+        Calendar cal = Calendar.getInstance();
+        int dayOfWeek = cal.get(Calendar.DAY_OF_WEEK) - 1;
+        String todayString=Integer.toString(dayOfWeek);
+       return dayOfWeek;
     }
 
 }
